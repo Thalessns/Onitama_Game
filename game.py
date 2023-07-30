@@ -4,8 +4,8 @@ from player import Player;
 from card import Card;
 from spot import Spot;
 from position import Position;
+from utils import Utils;
 from exception import IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException, IllegalSpotException;
-from os import system, name;
 
 class Game:
 
@@ -27,13 +27,6 @@ class Game:
         self.__turn = self.tableCard.color;
         # Iniciando jogo
         self.__play();
-    
-    # Limpar terminal
-    def __clear(self):
-        if name is "nt":
-            system('cls');
-        else:
-            system("clear");
 
     # Passando turno
     def __pass_turn(self):
@@ -131,9 +124,7 @@ class Game:
 
     def show_table(self):
         # Mostrando mensagem
-        print("-"*28);
-        print(f"{'Mostrando Tabuleiro':^28}");
-        print("-"*28);
+        Utils.title("Mostrando Tabuleiro");
         # Mostrando número das colunas
         for i in range(0, 5): print(f"x\y {i:>2}", end="") if i == 0 else print(f"{i:>5}", end="");
         print();
@@ -151,9 +142,7 @@ class Game:
                 else:
                     print("| R |", end="") if piece.isMaster else print("| r |", end="");
             print("");
-        print("-"*28);
-        print(f"Carta da Mesa: {self.__tableCard.name}");
-        print("-"*28);
+        Utils.title(f"Carta da Mesa: {self.__tableCard.name}");
 
     def __select_card(self, cards: list(), cardName: str):
         if cards[0].name.lower() == cardName.lower():
@@ -172,7 +161,7 @@ class Game:
         while not self.__check_victory(Color.BLUE) and not self.__check_victory(Color.RED):
             try:
                 # Limpando tela
-                self.__clear();
+                Utils.clear();
                 # verificando jogador atual
                 if self.__turn == Color.BLUE: player = self.__bluePlayer  
                 else: player = self.__redPlayer;
@@ -180,7 +169,7 @@ class Game:
                 cards = player.cards;
                 
                 # Mostrando jogador atual
-                print("-"*28);
+                Utils.bars();
                 print(f"Jogador: {player.name}\nCor: {player.pieceColor}");
                 
                 # Mostrando Tabuleiro
@@ -191,7 +180,7 @@ class Game:
                     print(f"Carta: {card.name}");
                     for move in card.positions:
                         print(f"[{card.positions.index(move)}] -> Row: {move.row:<2} | Col: {move.col}");
-                    print("-"*28);
+                    Utils.bars();
 
                 # Escolhendo a peça que será movida
                 target = input(f"Escolha uma peça para mover [x,y]: ");
@@ -263,16 +252,15 @@ class Game:
                 print("Encerrando...");
                 return;
         
-        self.__clear();
+        Utils.clear();
         # Mostrando jogador atual
-        print("-"*28);
+        Utils.bars();
         print(f"Jogador: {player.name}\nCor: {player.pieceColor}");
         # Mostrando Tabuleiro
         self.show_table();
 
         # Mostrando vencedor
-        print("-"*28);
-        print(f"Parabéns {player.name}, você venceu!");
+        Utils.title(f"Parabéns {player.name}, você venceu!");
 
     # Getters
     @property
@@ -305,6 +293,3 @@ class Game:
 
     def __get_spot(self, row, col):
         return self.__table[row][col];
-
-
-play = Game();
