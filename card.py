@@ -5,9 +5,9 @@ class Card:
 
     # Construtor
     def __init__(self, name: str, color: Color, positions: Position):
-        self.name       = name;
-        self.color      = color;
-        self.positions  = positions;
+        self.__name       = name;
+        self.__color      = color;
+        self.__positions  = positions;
 
     # Método que sorteia cinco cartas
     @staticmethod
@@ -117,16 +117,3 @@ class Card:
     @property
     def positions(self):
         return self.__positions;
-
-    # Setters
-    @name.setter
-    def name(self, name):
-        self.__name = name;
-
-    @color.setter
-    def color(self, color):
-        self.__color = color;
-
-    @positions.setter
-    def positions(self, positions):
-        self.__positions = positions;

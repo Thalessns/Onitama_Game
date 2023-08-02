@@ -4,9 +4,9 @@ class Piece():
 
     # Construtor
     def __init__(self, color=Color.NONE, isMaster=False):
-        self.color      = color;
-        self.isMaster   = isMaster;
-        self.alive      = True;
+        self.__color      = color;
+        self.__isMaster   = isMaster;
+        self.__alive      = True;
 
     # Metódo para criação das peças
     @staticmethod
@@ -31,14 +31,6 @@ class Piece():
         return self.__alive;
 
     # Setters
-    @color.setter
-    def color(self, color):
-        self.__color = color;
-
-    @isMaster.setter
-    def isMaster(self, status):
-        self.__isMaster = status;
-
     @alive.setter
     def alive(self, status):
         self.__alive = status;

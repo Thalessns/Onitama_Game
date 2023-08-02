@@ -27,4 +27,5 @@ class App(ABC):
             if resp.lower() == "s": App.play();
             # Saindo
             return;
+            
 App.play();

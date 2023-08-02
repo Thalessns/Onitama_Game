@@ -6,9 +6,9 @@ class Player:
     
     # Construtor
     def __init__(self, name: str, pieceColor: Color, cards: list):
-        self.name = name;
-        self.pieceColor = pieceColor;
-        self.cards = cards;
+        self.__name = name;
+        self.__pieceColor = pieceColor;
+        self.__cards = cards;
 
     # Método que verifica se o jogador possui um determinado card
     def has_card(self, card):
@@ -17,7 +17,7 @@ class Player:
     # Método que substitui um card
     def __replace_card(self, old: Card, new: Card):       
         i = self.cards.index(old);
-        self.cards[i] = new;
+        self.__cards[i] = new;
 
     def swap_card(self, oldCard: Card, newCard: Card):
         if newCard == None:
@@ -39,16 +39,3 @@ class Player:
     @property
     def cards(self):
         return self.__cards;
-
-    # Setters
-    @name.setter
-    def name(self, name):
-        self.__name = name;
-
-    @pieceColor.setter
-    def pieceColor(self, color):
-        self.__pieceColor = color;
-
-    @cards.setter
-    def cards(self, cards):
-        self.__cards = cards;

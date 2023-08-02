@@ -7,24 +7,24 @@ class Spot:
 
     # Construtor
     def __init__(self, position, piece=None, color=Color.NONE):
-        self.position = position;
-        self.piece = piece;
-        self.color = color;
+        self.__position = position;
+        self.__piece = piece;
+        self.__color = color;
 
     # Método que libera o espaço
     def release_spot(self):
-        self.piece = None;
+        self.__piece = None;
 
     # Método que verifica se um espaço pode ser ocupado
     def occupy_spot(self, piece: Piece):
         # Verificando se o espaço já está vazio
         if self.piece is None:
-            self.piece = piece;
+            self.__piece = piece;
             return;
         elif piece.color is self.piece.color:
             raise IllegalMovementException("Existe outra peça de mesma cor neste espaço!");
         self.piece.alive = False;
-        self.piece = piece;
+        self.__piece = piece;
         return;
 
     # Método de criação do tabuleiro
@@ -67,16 +67,3 @@ class Spot:
     @property
     def color(self):
         return self.__color;
-
-    # Setters
-    @position.setter
-    def position(self, pos):
-        self.__position = pos;
-
-    @piece.setter
-    def piece(self, piece):
-        self.__piece = piece;
-
-    @color.setter
-    def color(self, color):
-        self.__color = color;

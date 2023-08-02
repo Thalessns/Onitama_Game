@@ -2,8 +2,8 @@ class Position:
     
     # Construtor
     def __init__(self, row, col):
-        self.row = row;
-        self.col = col;
+        self.__row = row;
+        self.__col = col;
 
     # Getters
     @property
@@ -13,12 +13,3 @@ class Position:
     @property
     def col(self):
         return self.__col;
-
-    # Getters
-    @row.setter
-    def row(self, row):
-        self.__row = row;
-
-    @col.setter
-    def col(self, col):
-        self.__col = col;
